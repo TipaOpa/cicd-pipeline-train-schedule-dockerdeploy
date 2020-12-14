@@ -43,10 +43,10 @@ stage ('DeployToProduction') {
         milestone(1)
         withCredentials ([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
             script {
-                sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$env['prod_ip'] \"docker pull 1234123123123/train-schedule:${env.BUILD_NUMBER}\""
+                sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$54.209.95.226 \"docker pull 1234123123123/train-schedule:${env.BUILD_NUMBER}\""
                 try {
-                   sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@env['prod_ip'] \"docker stop train-schedule\""
-                   sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@env['prod_ip'] \"docker rm train-schedule\""
+                   sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@54.209.95.226 \"docker stop train-schedule\""
+                   sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@54.209.95.226 \"docker rm train-schedule\""
                 } catch (err) {
                     echo: 'caught error: $err'
                 }
